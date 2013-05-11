@@ -67,6 +67,7 @@ STATIC_ROOT = ''
 # URL prefix for static files.
 # Example: "http://example.com/static/", "http://static.example.com/"
 STATIC_URL = '/static/'
+# STATIC_URL = 'C:/Users/fpan/PY-Programs/publishing/bookieGoer/discover/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
