@@ -27,20 +27,23 @@ import sqlite3 as lite
 @csrf_exempt
 @require_POST
 def new_shout(request):
-
+    br=[]
+    bradd=[]
     con = None
     con = lite.connect("C:/Users/fpan/PY-Programs/publishing/bookieGoer/bookieGoer/db.db")
     cur = con.cursor()
-    r=1
-    s=range(100)
-    t=range(100)
+    brcount=0
+    br=range(100)
+    bradd=range(100)
     for row in cur.execute("SELECT * FROM discover_branch"): #order by visit_count DESC"):   
-        s[r] = row[1]
-        t[r] = row[2]
-        print s[r]
-        print t[r]
-        r=r+1    
-
+        br[brcount] = row[1]
+        bradd[brcount] = row[2]
+        print brcount
+        print br[brcount]
+        print bradd[brcount]
+        brcount=brcount+1    
+    print br[10]
+    print bradd[10]
     d=""
     dd=""
     lat = request.POST['lat']
@@ -83,7 +86,12 @@ def new_shout(request):
                 clean_text = nltk.clean_html(responser)
                 beg = clean_text.index("Available to borrow",1)
                 end = clean_text.index("Not available at this time",beg)
-                clean_text = clean_text[beg:end]                
+                clean_text = clean_text[beg:end]
+                for r in range(brcount):
+                    # r=r+1
+                    print br[r]
+                    if br[r] in clean_text:
+                        print bradd[r]
                 # print clean_text
                 break
 
