@@ -42,8 +42,9 @@ def new_shout(request):
         print br[brcount]
         print bradd[brcount]
         brcount=brcount+1    
-    print br[10]
-    print bradd[10]
+    # print br[10]
+    # print bradd[10]
+    Shout.objects.all().delete()
     d=""
     dd=""
     lat = request.POST['lat']
@@ -202,7 +203,10 @@ def get_shouts(request):
             'message': shout.message,
             'zipcode': shout.zip,
             'address': shout.address,
-            'count': shout.a
+            'count': shout.a,
+            'address': shout.address, #address,
+            'book': shout.book, 
+            'branchname': shout.branchname            
         })
         #sleep(2)
     

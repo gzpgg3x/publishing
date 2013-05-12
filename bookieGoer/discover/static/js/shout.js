@@ -119,7 +119,7 @@ function get_shouts(lat, lng, radius) {
 }
 
 function add_shout(shout) {
-  var shout_div = $('<div class="single-shout"><div class="shout-header"><h3>'  + '[REPORT NO. ' + shout.count + ']' + '</p><p class="coords">' + shout.author + '</h3></div><div class="shout-info"><p class="date">'  + shout.address + '</p><p class="coords">(EXTRACTED: ' + shout.date_created + ')</p></div><div style="clear:both;"></div><p class="message">' + shout.message + '</p></div>');
+  var shout_div = $('<div class="single-shout"><div class="shout-header"><h3></p><p class="coords">' + shout.book + '</h3></div><div class="shout-info"><p class="date">'  + shout.branchname + '</p><p class="coords">(ADDRESS: ' + shout.address + ')</p></div><div style="clear:both;"></div><p class="message">' + shout.message + '</p></div>');
   $("#shouts").prepend(shout_div);
 
 
