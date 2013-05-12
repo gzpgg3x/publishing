@@ -19,4 +19,7 @@ class Shout(models.Model):
     def __unicode__(self):
         return "%s: %s" % (self.author, self.message[:20])
         #return "%s: %s" % (self.author, self.message, self.a[:100])
-# Create your models here.
+
+class Branch(models.Model):
+    branchname = models.CharField(max_length=50, blank=True)
+    branchaddress = models.CharField(max_length=100,blank=True)

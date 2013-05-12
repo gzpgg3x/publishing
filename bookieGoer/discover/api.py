@@ -20,13 +20,26 @@ from discover.models import *
 
 import json
 from datetime import datetime
-from time import sleep
+import sqlite3 as lite
 
 #del 
 
 @csrf_exempt
 @require_POST
 def new_shout(request):
+
+    con = None
+    con = lite.connect("C:/Users/fpan/PY-Programs/publishing/bookieGoer/bookieGoer/db.db")
+    cur = con.cursor()
+    r=1
+    s=range(100)
+    t=range(100)
+    for row in cur.execute("SELECT * FROM discover_branch"): #order by visit_count DESC"):   
+        s[r] = row[1]
+        t[r] = row[2]
+        print s[r]
+        print t[r]
+        r=r+1    
 
     d=""
     dd=""
@@ -71,7 +84,7 @@ def new_shout(request):
                 beg = clean_text.index("Available to borrow",1)
                 end = clean_text.index("Not available at this time",beg)
                 clean_text = clean_text[beg:end]                
-                print clean_text
+                # print clean_text
                 break
 
 
