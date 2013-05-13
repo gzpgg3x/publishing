@@ -62,6 +62,7 @@ def new_shout(request):
     d=author
     dd=message
     a=0
+    count=0
     response = []
     # ddd = 'http://searchwww.sec.gov/EDGARFSClient/jsp/EDGAR_MainAccess.jsp?search_text='+keywords+'&sort=Date&formType=Form8K&isAdv=true&stemming=true&numResults=100&fromDate=' + d + '&toDate=' + dd + '&numResults=100' 
     ddd = 'http://nypl.bibliocommons.com/search?t=title&q=' + kw + '&commit=Search&searchOpt=catalogue' 
@@ -95,11 +96,12 @@ def new_shout(request):
                         address = bradd[r]
                         book = keywords
                         branchname = br[r]
+                        count = count + 1
                         print bradd[r]
                 # print clean_text
 
 
-                        shout = Shout.objects.create(lat=lat,lng=lng,author=author,message=message,book=book,address=address,branchname=branchname)
+                        shout = Shout.objects.create(lat=lat,lng=lng,author=author,message=message,book=book,address=address,branchname=branchname,count=count)
 
                         response.append({
                             'date_created': "", #shout.date_created.strftime("%b %d at %I:%M:%S%p"),
@@ -110,7 +112,8 @@ def new_shout(request):
                             'zipcode': "", #zip,
                             'address': address, #address,
                             'book': book, 
-                            'branchname': branchname
+                            'branchname': branchname,
+                            'count': count
                         })
 
 
@@ -203,7 +206,7 @@ def get_shouts(request):
             'message': shout.message,
             'zipcode': shout.zip,
             'address': shout.address,
-            'count': shout.a,
+            'count': shout.count,
             'address': shout.address, #address,
             'book': shout.book, 
             'branchname': shout.branchname            

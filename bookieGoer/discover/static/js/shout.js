@@ -54,7 +54,7 @@ function shout_init() {
       form_error(author, "Please enter Author!");
       return false;
     } else if (!message.val()) {
-      form_error(message, "Please enter Zipcode!");
+      form_error(message, "Please enter Message!");
       return false;
     } else if (!keywords.val()) {
       form_error(keywords, "Please enter KeyWords!");
@@ -119,15 +119,15 @@ function get_shouts(lat, lng, radius) {
 }
 
 function add_shout(shout) {
-  var shout_div = $('<div class="single-shout"><div class="shout-header"><h3></p><p class="coords">' + shout.book + '</h3></div><div class="shout-info"><p class="date">'  + shout.branchname + '</p><p class="coords">(ADDRESS: ' + shout.address + ')</p></div><div style="clear:both;"></div><p class="message">' + shout.message + '</p></div>');
+  var shout_div = $('<div class="single-shout"><div class="shout-header"><h3>'  + '[ ' + shout.count + ']' + '</p><p class="coords">' + shout.book + '</h3></div><div class="shout-info"><p class="date">'  + shout.branchname + '</p><p class="coords">(ADDRESS: ' + shout.address + ')</p></div><div style="clear:both;"></div><p class="message"></p></div>');
   $("#shouts").prepend(shout_div);
 
 
-  displayMap(shout.zipcode, shout.count, shout.author);
-  // displayMap(shout.zipcode);
+  displayMap(shout.address, shout.count, shout.branchname);
+  // displayMap(shout.address);
 }
 
-function displayMap(zipcode, count, author) {
+function displayMap(address, count, branchname) {
   var geocoder, marker, infowindow, i;
  
   if(!map) {
@@ -139,13 +139,13 @@ function displayMap(zipcode, count, author) {
   }
 
   // Getting the address from the text input
-  var address = zipcode; //document.getElementById('address').value;
+  var address = address; //document.getElementById('address').value;
   var seq = count; 
-  var company = author;
+  var branchname = branchname;
   // Making the Geocoder call 
-  getCoordinates(address, seq, company);
+  getCoordinates(address, seq, branchname);
 
-  function getCoordinates(address,seq, company) {
+  function getCoordinates(address,seq, branchname) {
     // Check to see if we already have a geocoded object. If not we create one
     if(!geocoder) {
       geocoder = new google.maps.Geocoder();  
@@ -180,7 +180,7 @@ function displayMap(zipcode, count, author) {
         //alert('j = ' + j);
         content += j;
         seqNum = seq.toString();
-        seqNum = seqNum + ": " + company;
+        seqNum = seqNum + ": " + branchname;
         //seqNum = seqNum.concat(company);
         //alert('seqNum = ' + seqNum);
  

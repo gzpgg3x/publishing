@@ -8,7 +8,7 @@ class Shout(models.Model):
     message = models.TextField()
     zip = models.CharField(max_length=15,blank=True)
     address = models.CharField(max_length=100,blank=True)
-    a = models.CharField(max_length=5,blank=True)
+    count = models.CharField(max_length=5,blank=True)
     book = models.CharField(max_length=60,blank=True)
     branchname = models.CharField(max_length=50, blank=True)
 
